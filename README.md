@@ -10,7 +10,7 @@ Clone this repository and create a conda environment with the following commands
 
 ```
 # Clone this repo
-git clone ssh://git@gitlab-master.nvidia.com:12051/dvl/matching-anything.git
+git clone git@github.com:nv-dvl/matcha.git
 
 # Create conda env
 conda env create -f environment.yml
