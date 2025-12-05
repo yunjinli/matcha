@@ -172,4 +172,4 @@ class CustomFeature(BaseFeature):
 
 ## Training
 
-We will not release the training guidnace.
+We will not release the training guidance.
