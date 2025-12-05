@@ -1,6 +1,6 @@
 # Towards Matching Anything
 
-Code release for **MATCHA:Towards Matching Anything**  [[Paper](https://arxiv.org/abs/2501.14945) | [Project Slides](https://docs.google.com/presentation/d/1OvV_XHj9365V3iwEBLkUOby5TJLk4IDGMSymiRjsfHQ/edit?usp=sharing)]
+Code release for **MATCHA:Towards Matching Anything**  [[Paper](https://arxiv.org/abs/2501.14945) | [Project Page](https://feixue94.github.io/matcha-project/)]
 
 ![Teaser](assets/matcha_teaser.jpg)
 
