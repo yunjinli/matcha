@@ -1,0 +1,37 @@
+name: matcha
+channels:
+  - nvidia/label/cuda-12.1.0
+  - pytorch
+  - conda-forge
+  - xformers
+dependencies:
+  - python=3.10
+  - pytorch=2.5.1
+  - pytorch-cuda=12.1
+  - torchvision
+  - xformers
+  - pip
+  - pip:
+      - einops
+      - scipy
+      - matplotlib
+      - pandas
+      - kornia
+      - timm
+      - h5py
+      - accelerate
+      - diffusers==0.33.1 # the latest version
+      - transformers
+      - PyYAML
+      - tensorboard
+      - huggingface-hub==0.32.2 # the latest version
+      - gradio
+      - pycolmap
+      - poselib
+      - opencv-python
+      - opencv-python-headless
+      - roma==1.5.0
+      - git+https://github.com/Parskatt/DeDoDe.git
+
+
+# conda env create -f environment.yml

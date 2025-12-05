@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "matcha"
+version = "0.1.0"
+description = "MATCHA: Towards Matching Anything"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    { name = "Fei Xue", email = "fx221@cam.ac.uk" },
+    { name = "Qunjie Zhou", email = "qunjiez@nvidia.com" },
+    
+]
+requires-python = ">=3.10"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering"
+]
+
+dependencies = [
+    "torch>=2.3.0",
+    "torchvision",
+    "einops",
+    "scipy",
+    "matplotlib",
+    "pandas",
+    "kornia",
+    "timm",
+    "h5py",
+    "accelerate",
+    "diffusers==0.15.0",
+    "transformers",
+    "PyYAML",
+    "tensorboard",
+    "huggingface-hub==0.23.4",
+    "pycolmap",
+    "poselib",
+    "opencv-python",
+    "opencv-python-headless",
+    "roma==1.5.0",
+    "ptflops",
+]
+
+
+[tool.setuptools]
+packages = ["matcha", "third_party", "scripts"]
