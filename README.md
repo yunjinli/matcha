@@ -170,4 +170,6 @@ class CustomFeature(BaseFeature):
 
 ```
 
-## Training (coming soon)
+## Training
+
+We will not release the training guidnace.
