@@ -172,4 +172,17 @@ class CustomFeature(BaseFeature):
 
 ## Training
 
-We will not release the training guidance.
+Due to other priorities, the authors have constraint capacity to prepare the training guidance. We refer the users to the paper for training details.
+
+## Citation
+If you use our method in your research, please cite:
+```
+@inproceedings{xue2025matcha,
+  title={MATCHA: Towards matching anything},
+  author={Xue, Fei and Elflein, Sven and Leal-Taix{\'e}, Laura and Zhou, Qunjie},
+  booktitle={Proceedings of the Computer Vision and Pattern Recognition Conference},
+  pages={27081--27091},
+  year={2025}
+}
+```
+
