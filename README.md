@@ -22,7 +22,7 @@ pip install -e .
 
 ## Pretrained model
 
-Download our [matcha_pretrained.pth](https://drive.google.com/file/d/1-ItlDnwXlIDS7rRNr9IN6Mig5QvvSEHZ/view?usp=sharing)
+Download our [matcha_pretrained.pth](https://drive.google.com/file/d/17p0-ne4B9H60cC_AF6G284SetuImDUDO/view?usp=sharing)
 and create ``weights/`` folder and place it there.
 
 ## Put MATCHA in your project
