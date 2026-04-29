@@ -12,7 +12,10 @@
 
 from diffusers import StableDiffusionPipeline
 # from diffusers.models.unet_2d_condition import UNet2DConditionModel
-from diffusers.models.unets.unet_2d_condition import UNet2DConditionModel
+try:
+    from diffusers.models.unets.unet_2d_condition import UNet2DConditionModel
+except ImportError:
+    from diffusers.models.unet_2d_condition import UNet2DConditionModel
 from diffusers import DDIMScheduler
 import torch
 import torch.nn as nn
