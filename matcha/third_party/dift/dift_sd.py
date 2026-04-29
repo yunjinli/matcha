@@ -253,7 +253,7 @@ class SDFeaturizer(nn.Module):
             onestep_pipe.enable_xformers_memory_efficient_attention()
         except ModuleNotFoundError:
             pass
-        null_prompt_embeds, _ = onestep_pipe.encode_prompt(
+        null_prompt_embeds, _ = onestep_pipe._encode_prompt(
             prompt=null_prompt,
             device="cuda",
             num_images_per_prompt=1,
@@ -283,7 +283,7 @@ class SDFeaturizer(nn.Module):
         if prompt == self.null_prompt:
             prompt_embeds = self.null_prompt_embeds
         else:
-            prompt_embeds, _ = self.pipe.encode_prompt(
+            prompt_embeds, _ = self.pipe._encode_prompt(
                 prompt=prompt,
                 device="cuda",
                 num_images_per_prompt=1,
@@ -316,7 +316,7 @@ class SDFeaturizer4Eval(SDFeaturizer):
             cat2prompt_embeds = {}
             for cat in cat_list:
                 prompt = f"a photo of a {cat}"
-                prompt_embeds, _ = self.pipe.encode_prompt(
+                prompt_embeds, _ = self.pipe._encode_prompt(
                     prompt=prompt,
                     device=device,
                     num_images_per_prompt=1,
@@ -339,7 +339,7 @@ class SDFeaturizer4Eval(SDFeaturizer):
             prompt_embeds = self.null_prompt_embeds
         else:
             prompt = f"a photo of a {cat}"
-            prompt_embeds, _ = self.pipe.encode_prompt(
+            prompt_embeds, _ = self.pipe._encode_prompt(
                 prompt=prompt,
                 device=device,
                 num_images_per_prompt=1,
