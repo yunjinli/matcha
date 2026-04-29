@@ -250,20 +250,20 @@ class AttentionFusionNet(nn.Module):
 class MatchaLight(AttentionFusionNet):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self._dift = None
+        self._dift_ready = False
         self._dift_cat_list = cats_pascal + cats_willow + cats_ap10k + cats_spair
         self.name = "MatchaLight"
 
-    @property
-    def dift(self):
-        if self._dift is None:
-            self._dift = DIFT(cat_list=self._dift_cat_list)
-        return self._dift
+    def _ensure_dift(self):
+        if not self._dift_ready:
+            self.dift = DIFT(cat_list=self._dift_cat_list)
+            self._dift_ready = True
+        return self.dift
 
     def forward(self, img: torch.Tensor, cat=None, feat_c=None, feat_f=None, **kwargs):
         # Extract raw dift features
         if feat_c is None or feat_f is None:
-            feat_c, feat_f = self.dift(img, cat=cat, ensemble_size=self.ensemble_size)
+            feat_c, feat_f = self._ensure_dift()(img, cat=cat, ensemble_size=self.ensemble_size)
 
         # Feature fusion
         feats_c, feats_f, _ = self.forward_fuse_feature(feat_c, feat_f)
@@ -287,7 +287,7 @@ class MatchaLight(AttentionFusionNet):
         torch.cuda.synchronize()
         start = time.time()
         # Extract raw dift features
-        feat_c, feat_f = self.dift(img, ensemble_size=self.ensemble_size)
+        feat_c, feat_f = self._ensure_dift()(img, ensemble_size=self.ensemble_size)
         torch.cuda.synchronize()
         end = time.time()
         runtime = end - start
@@ -311,23 +311,23 @@ class Matcha(AttentionFusionNet):
         super().__init__(**kwargs)
 
         # DIFT is loaded lazily on first use (requires Stable Diffusion download)
-        self._dift = None
+        self._dift_ready = False
         self._dift_cat_list = cats_pascal + cats_willow + cats_ap10k + cats_spair
 
         # Load DINOv2
         self.dinov2 = DINOv2()
         self.name = "Matcha"
 
-    @property
-    def dift(self):
-        if self._dift is None:
-            self._dift = DIFT(cat_list=self._dift_cat_list)
-        return self._dift
+    def _ensure_dift(self):
+        if not self._dift_ready:
+            self.dift = DIFT(cat_list=self._dift_cat_list)
+            self._dift_ready = True
+        return self.dift
 
     def forward(self, img: torch.Tensor, feat_c=None, feat_f=None, cat=None, semantic_mode=False):
         # Extract raw dift features
         if feat_c is None or feat_f is None:
-            feat_c, feat_f = self.dift(img, cat=cat, ensemble_size=self.ensemble_size)
+            feat_c, feat_f = self._ensure_dift()(img, cat=cat, ensemble_size=self.ensemble_size)
 
         # DIFT feature fusion
         feat_s, feat_g, _ = self.forward_fuse_feature(feat_c=feat_c, feat_f=feat_f)
@@ -354,7 +354,7 @@ class Matcha(AttentionFusionNet):
         torch.cuda.synchronize()
         start = time.time()
         # Extract raw dift features
-        feat_c, feat_f = self.dift(img, ensemble_size=self.ensemble_size)
+        feat_c, feat_f = self._ensure_dift()(img, ensemble_size=self.ensemble_size)
         torch.cuda.synchronize()
         end = time.time()
         runtime = end - start
