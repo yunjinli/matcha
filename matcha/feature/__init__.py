@@ -1,4 +1,7 @@
-from .dedode import DeDoDe_GFeature
+try:                                                                                                                                                                                                          
+  from .dedode import DeDoDe_GFeature
+except ImportError:                                                                                                                                                                                           
+  DeDoDe_GFeature = None
 from .matcha_feature import MatchaFeature
 from .matcha_light_feature import MatchaLightFeature
 from .dift import DIFTFeature
