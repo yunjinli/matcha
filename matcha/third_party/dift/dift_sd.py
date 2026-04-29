@@ -249,7 +249,10 @@ class SDFeaturizer(nn.Module):
         gc.collect()
         onestep_pipe = onestep_pipe.to("cuda")
         onestep_pipe.enable_attention_slicing()
-        onestep_pipe.enable_xformers_memory_efficient_attention()
+        try:
+            onestep_pipe.enable_xformers_memory_efficient_attention()
+        except ModuleNotFoundError:
+            pass
         null_prompt_embeds, _ = onestep_pipe.encode_prompt(
             prompt=null_prompt,
             device="cuda",
