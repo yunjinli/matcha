@@ -253,12 +253,13 @@ class SDFeaturizer(nn.Module):
             onestep_pipe.enable_xformers_memory_efficient_attention()
         except ModuleNotFoundError:
             pass
-        null_prompt_embeds, _ = onestep_pipe._encode_prompt(
+        _ep = onestep_pipe._encode_prompt(
             prompt=null_prompt,
             device="cuda",
             num_images_per_prompt=1,
             do_classifier_free_guidance=False,
         )  # [1, 77, dim]
+        null_prompt_embeds = _ep[0] if isinstance(_ep, tuple) else _ep
 
         self.null_prompt_embeds = null_prompt_embeds
         self.null_prompt = null_prompt
@@ -283,12 +284,13 @@ class SDFeaturizer(nn.Module):
         if prompt == self.null_prompt:
             prompt_embeds = self.null_prompt_embeds
         else:
-            prompt_embeds, _ = self.pipe._encode_prompt(
+            _ep = self.pipe._encode_prompt(
                 prompt=prompt,
                 device="cuda",
                 num_images_per_prompt=1,
                 do_classifier_free_guidance=False,
             )  # [1, 77, dim]
+            prompt_embeds = _ep[0] if isinstance(_ep, tuple) else _ep
         prompt_embeds = prompt_embeds.repeat(ensemble_size, 1, 1)
         unet_ft_all = self.pipe(
             img_tensor=img_tensor,
@@ -316,12 +318,13 @@ class SDFeaturizer4Eval(SDFeaturizer):
             cat2prompt_embeds = {}
             for cat in cat_list:
                 prompt = f"a photo of a {cat}"
-                prompt_embeds, _ = self.pipe._encode_prompt(
+                _ep = self.pipe._encode_prompt(
                     prompt=prompt,
                     device=device,
                     num_images_per_prompt=1,
                     do_classifier_free_guidance=False,
                 )  # [1, 77, dim]
+                prompt_embeds = _ep[0] if isinstance(_ep, tuple) else _ep
                 if use_float16:
                     prompt_embeds = prompt_embeds.half()
                 cat2prompt_embeds[cat] = prompt_embeds
@@ -339,12 +342,13 @@ class SDFeaturizer4Eval(SDFeaturizer):
             prompt_embeds = self.null_prompt_embeds
         else:
             prompt = f"a photo of a {cat}"
-            prompt_embeds, _ = self.pipe._encode_prompt(
+            _ep = self.pipe._encode_prompt(
                 prompt=prompt,
                 device=device,
                 num_images_per_prompt=1,
                 do_classifier_free_guidance=False,
             )  # [1, 77, dim]
+            prompt_embeds = _ep[0] if isinstance(_ep, tuple) else _ep
 
         return prompt_embeds
 
