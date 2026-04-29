@@ -222,7 +222,7 @@ class OneStepSDPipeline(StableDiffusionPipeline):
 class SDFeaturizer(nn.Module):
     def __init__(
             self,
-            sd_id="stabilityai/stable-diffusion-2-1",
+            sd_id="runwayml/stable-diffusion-v1-5",
             null_prompt="",
             use_float16=False,
     ):
@@ -301,7 +301,7 @@ class SDFeaturizer(nn.Module):
 class SDFeaturizer4Eval(SDFeaturizer):
     def __init__(
             self,
-            sd_id="stabilityai/stable-diffusion-2-1",
+            sd_id="runwayml/stable-diffusion-v1-5",
             null_prompt="",
             cat_list=[],
             device="cuda",
