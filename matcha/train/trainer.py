@@ -28,10 +28,10 @@ from matcha.train.losses.semantic_loss import SemanticLoss
 from matcha.train.losses.semantic_loss_utils import AP10K_FLIP, SPAIR_FLIP_TRN
 from matcha.utils.device import save_args
 
-from third_party.dift.dift_sd import extract_dift_feature
-from third_party.xfeat.augmentation import AugmentationPipe
-from third_party.alike.alike_wrapper import configs
-from third_party.alike.alike import ALike
+from matcha.third_party.dift.dift_sd import extract_dift_feature
+from matcha.third_party.xfeat.augmentation import AugmentationPipe
+from matcha.third_party.alike.alike_wrapper import configs
+from matcha.third_party.alike.alike import ALike
 
 try:
     sys.path.append(os.environ.get("SUBMIT_SCRIPTS", "."))

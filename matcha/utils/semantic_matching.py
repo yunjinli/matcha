@@ -1,7 +1,7 @@
 import torch
 import numpy as np
 
-from third_party.geoaware_sc.flow_matching import get_flow
+from matcha.third_party.geoaware_sc.flow_matching import get_flow
 
 
 def compute_semantic_matches(

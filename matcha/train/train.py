@@ -9,7 +9,7 @@ import torch.multiprocessing as mp
 import argparse
 
 from matcha.feature import AttentionFusionNet
-from third_party.dift.dift_sd import SDFeaturizer4Eval
+from matcha.third_party.dift.dift_sd import SDFeaturizer4Eval
 from matcha.utils.device import torch_set_gpu
 from matcha.train.dataset import get_combined_dataset, get_loader
 from matcha.train.trainer import GeoSemTrainer

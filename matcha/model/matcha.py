@@ -7,12 +7,12 @@ import torch.nn.functional as F
 
 torch.backends.cuda.matmul.allow_tf32 = True  # for gpu >= Ampere and pytorch >= 1.12
 
-from third_party.dust3r.blocks import DecoderBlockJointP
-from third_party.dust3r.patch_embed import get_patch_embed
-from third_party.dust3r.pos_embed import RoPE2D
-from third_party.geoaware_sc.corr_map_model import Correlation2Displacement
-from third_party.dift.dift_sd import DIFT
-from third_party.dinov2 import DINOv2
+from matcha.third_party.dust3r.blocks import DecoderBlockJointP
+from matcha.third_party.dust3r.patch_embed import get_patch_embed
+from matcha.third_party.dust3r.pos_embed import RoPE2D
+from matcha.third_party.geoaware_sc.corr_map_model import Correlation2Displacement
+from matcha.third_party.dift.dift_sd import DIFT
+from matcha.third_party.dinov2 import DINOv2
 from matcha.utils.category_list import cats_spair, cats_pascal, cats_ap10k, cats_willow
 
 

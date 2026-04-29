@@ -11,7 +11,7 @@ ALIKE_PATH = os.path.abspath(os.path.dirname(__file__))
 # sys.path.append(ALIKE_PATH)
 
 import torch
-from third_party.alike.alike import ALike
+from matcha.third_party.alike.alike import ALike
 import cv2
 import numpy as np
 

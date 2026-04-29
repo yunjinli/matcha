@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from third_party.dinov2 import vit_large
+from matcha.third_party.dinov2 import vit_large
 from .base_feature import BaseFeature
 
 

@@ -6,7 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import kornia
 
-from third_party.superpoint.superpoint import SuperPoint
+from matcha.third_party.superpoint.superpoint import SuperPoint
 from matcha.utils.image_processor import ImageProcessor
 
 

@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 
-from third_party.alike.alike_wrapper import extract_alike_kpts
+from matcha.third_party.alike.alike_wrapper import extract_alike_kpts
 
 
 def crop_patches(tensor, coords, size=7):

@@ -7,8 +7,8 @@ import torch
 from copy import deepcopy
 import math
 
-from third_party.alike.alnet import ALNet
-from third_party.alike.soft_detect import DKD
+from matcha.third_party.alike.alnet import ALNet
+from matcha.third_party.alike.soft_detect import DKD
 import time
 
 configs = {

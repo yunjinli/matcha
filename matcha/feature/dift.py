@@ -2,7 +2,7 @@ from typing import Tuple
 
 import torch
 
-from third_party.dift.dift_sd import SDFeaturizer4Eval
+from matcha.third_party.dift.dift_sd import SDFeaturizer4Eval
 from .base_feature import BaseFeature
 
 
