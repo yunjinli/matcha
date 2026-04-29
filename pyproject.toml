@@ -49,6 +49,5 @@ dependencies = [
     "ptflops",
 ]
 
-
-[tool.setuptools]
-packages = ["matcha", "third_party", "scripts"]
+[tool.setuptools.packages.find]                                                                                                                                                                               
+include = ["matcha*"]   
