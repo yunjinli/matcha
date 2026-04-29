@@ -250,11 +250,15 @@ class AttentionFusionNet(nn.Module):
 class MatchaLight(AttentionFusionNet):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.dift = DIFT(
-            cat_list=cats_pascal + cats_willow + cats_ap10k + cats_spair
-        )
-
+        self._dift = None
+        self._dift_cat_list = cats_pascal + cats_willow + cats_ap10k + cats_spair
         self.name = "MatchaLight"
+
+    @property
+    def dift(self):
+        if self._dift is None:
+            self._dift = DIFT(cat_list=self._dift_cat_list)
+        return self._dift
 
     def forward(self, img: torch.Tensor, cat=None, feat_c=None, feat_f=None, **kwargs):
         # Extract raw dift features
@@ -306,14 +310,19 @@ class Matcha(AttentionFusionNet):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        # Load DIFT
-        self.dift = DIFT(
-            cat_list=cats_pascal + cats_willow + cats_ap10k + cats_spair
-        )
+        # DIFT is loaded lazily on first use (requires Stable Diffusion download)
+        self._dift = None
+        self._dift_cat_list = cats_pascal + cats_willow + cats_ap10k + cats_spair
 
         # Load DINOv2
         self.dinov2 = DINOv2()
         self.name = "Matcha"
+
+    @property
+    def dift(self):
+        if self._dift is None:
+            self._dift = DIFT(cat_list=self._dift_cat_list)
+        return self._dift
 
     def forward(self, img: torch.Tensor, feat_c=None, feat_f=None, cat=None, semantic_mode=False):
         # Extract raw dift features
